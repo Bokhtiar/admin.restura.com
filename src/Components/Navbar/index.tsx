@@ -2,8 +2,9 @@ import { Link } from "react-router-dom"
 
 export const Navbar: React.FC = (): JSX.Element => {
     return <>
-        <Link to='/home'>Home</Link>
-        <Link to='/about'>About</Link>
-        <Link to='/contact'>Contact</Link>
+        <div className="flex justify-between items-center py-4 shadow-lg">
+            <h2>Restura</h2>
+            <div> Bokhtiar</div>
+        </div>
     </>
 }
