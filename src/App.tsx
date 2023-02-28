@@ -1,11 +1,9 @@
-import { CategoryForm } from "./Components/form/category.form"
+import routesConfig from '../src/routes/index'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+const router = createBrowserRouter(routesConfig);
 
-const app:React.FC= ():JSX.Element => {
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
-  return (
-    <div>
-      <CategoryForm></CategoryForm>
-    </div>
-  )
-}
-export default app
+export default App;
