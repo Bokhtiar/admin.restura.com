@@ -1,7 +1,10 @@
+import { CategoryForm } from "./Components/form/category.form"
+
 const app:React.FC= ():JSX.Element => {
+
   return (
     <div>
-      home page
+      <CategoryForm></CategoryForm>
     </div>
   )
 }
