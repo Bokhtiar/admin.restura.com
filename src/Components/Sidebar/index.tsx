@@ -21,39 +21,70 @@ export const Sidebar: React.FC = (): JSX.Element => {
             <span className="material-symbols-outlined">dashboard</span>
             <span>Dashboard</span>
           </div>
+  
 
-          {/* form */}
-          <div className="flex justify-between items-center text-gray-600 my-4">
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined">description</span>
+          <div tabIndex={0} className="collapse collapse-arrow">
+            <div className="collapse-title flex gap-2">
+            <span className="material-symbols-outlined">description</span>
               <span>Form</span>
             </div>
-            <span className="material-symbols-outlined">keyboard_arrow_down</span>
-          </div>
-
-          {/* table */}
-          <div className="flex justify-between items-center text-gray-600 my-4">
-            <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined">table_rows</span>
-              <span>Table</span>
+            <div className="collapse-content">
+                <li>
+                  <a href="">adasd</a>
+                </li>
+                <li>
+                  <a href="">asd</a>
+                </li>
             </div>
-            <span className="material-symbols-outlined">keyboard_arrow_down</span>
           </div>
 
-          {/* utils */}
-          <div className="flex justify-between items-center text-gray-600 my-4">
-            <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined">toc</span>
-              <span>Utils</span>
+          <div tabIndex={0} className="collapse collapse-arrow">
+            <div className="collapse-title flex gap-2">
+            <span className="material-symbols-outlined">description</span>
+              <span>Form</span>
             </div>
-            <span className="material-symbols-outlined">keyboard_arrow_down</span>
+            <div className="collapse-content">
+                <li>
+                  <a href="">adasd</a>
+                </li>
+                <li>
+                  <a href="">asd</a>
+                </li>
+            </div>
+          </div>
+          
+          <div tabIndex={0} className="collapse collapse-arrow">
+            <div className="collapse-title flex gap-2">
+            <span className="material-symbols-outlined">description</span>
+              <span>Form</span>
+            </div>
+            <div className="collapse-content">
+                <li>
+                  <a href="">adasd</a>
+                </li>
+                <li>
+                  <a href="">asd</a>
+                </li>
+            </div>
           </div>
 
-          {/* dashboard */}
-          <div className="flex gap-2 items-center text-gray-600">
-            <span className="material-symbols-outlined">logout</span>
-            <span>Logout</span>
+
+          <div tabIndex={0} className="collapse collapse-arrow">
+            <div className="collapse-title flex gap-2">
+            <span className="material-symbols-outlined">description</span>
+              <span>Form</span>
+            </div>
+            <div className="collapse-content">
+                <li>
+                  <a href="">adasd</a>
+                </li>
+                <li>
+                  <a href="">asd</a>
+                </li>
+            </div>
           </div>
+
+
 
         </section>
       </div>
