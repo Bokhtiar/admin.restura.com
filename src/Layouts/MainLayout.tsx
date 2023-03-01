@@ -12,7 +12,9 @@ export const MainLayout = () => (
         </div>
         <div className="col-span-4">
           <Navbar />
-          <Outlet />
+          <div className="container">
+            <Outlet />
+          </div>
           <Footer />
         </div>
       </div>

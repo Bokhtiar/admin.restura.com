@@ -1,7 +1,7 @@
 export const Navbar: React.FC = (): JSX.Element => {
   return (
     <>
-      <div className="flex justify-between items-center py-4 shadow-lg px-3">
+      <div className="flex justify-between items-center py-4 shadow-lg container">
         {/* search */}
         <div className="flex items-center">
           <input
