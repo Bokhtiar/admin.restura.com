@@ -45,7 +45,7 @@ export const Dashboard: React.FC = (): JSX.Element => {
       </section>
 
       {/* table */}
-      <div className="flex justify-between items-center my-2">
+      <div className="flex justify-between items-center mt-2">
           <span className="text-2xl text-gray-600">Order Table</span>
           <input type="text" className="border border-gray-400 py-1 rounded-md px-3" placeholder="search" onChange={handleFilter} id="" />
       </div>
