@@ -74,7 +74,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
               </div>
 
               <ul
-                className={` ${!submenuOpen && "hidden"} ${
+                className={` duration-700 ${!submenuOpen && "hidden"} ${
                   !open && "scale-0"
                 } `}
               >
@@ -89,7 +89,17 @@ export const Sidebar: React.FC = (): JSX.Element => {
                 </li>
               </ul>
             </li>
+
+            {/* category */}
+            <li className="flex items-center gap-2 my-3">
+              <span className="material-symbols-outlined">logout</span>
+              <Link to="" className={` ${!open && "hidden"} duration-500 `}>
+                Logout
+              </Link>
+            </li>
+
           </ul>
+
         </div>
       </div>
     </>

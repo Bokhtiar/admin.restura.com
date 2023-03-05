@@ -6,8 +6,12 @@ import { Sidebar } from "../Components/Sidebar";
 export const MainLayout = () => (
   <>
     <section className="flex">
-          <Sidebar />
-            <Outlet />
+      <div>
+        <Sidebar />
+      </div>
+      <div className="w-full px-2">
+        <Outlet />
+      </div>
     </section>
   </>
 );
