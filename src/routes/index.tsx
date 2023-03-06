@@ -1,6 +1,7 @@
 import { Login } from '../Pages/Auth/Login'
 import { Dashboard } from '../Pages/Dashboard'
 import { CategoryList } from '../Pages/Category/index'
+import { CategoryCreate } from '../Pages/Category/create'
 
 /* layouts */
 import { MainLayout } from '../Layouts/MainLayout'
@@ -28,6 +29,10 @@ const routesConfig = [
             {
                 path: "/category",
                 element: <CategoryList />,
+            },
+            {
+                path: "/category/create",
+                element: <CategoryCreate />,
             },
         ],
     },

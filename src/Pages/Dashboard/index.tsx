@@ -4,7 +4,6 @@ import { BradCrumbs } from "../../Components/BradCrumbs";
 import { Cart } from "../../Components/Card";
 import data from "./data";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { TextInput } from "../../Components/TextInput";
 
 interface formSUbmit {
   name: string;
