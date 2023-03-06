@@ -1,5 +1,6 @@
 import { Login } from '../Pages/Auth/Login'
 import { Dashboard } from '../Pages/Dashboard'
+import { CategoryList } from '../Pages/Category/index'
 
 /* layouts */
 import { MainLayout } from '../Layouts/MainLayout'
@@ -22,6 +23,11 @@ const routesConfig = [
             {
                 path: "/dashboard",
                 element: <Dashboard />,
+            },
+            /* category */
+            {
+                path: "/category",
+                element: <CategoryList />,
             },
         ],
     },

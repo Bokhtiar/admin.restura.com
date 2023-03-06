@@ -39,21 +39,30 @@ export const Sidebar: React.FC = (): JSX.Element => {
 
           {/* menu */}
           <ul className="pt-2 container text-white py-4">
-            {/* dashboard */}
+
+            {/* Dashboard */}
             <li className="flex items-center gap-2 my-3">
               <span className="material-symbols-outlined">home</span>
-              <a href="" className={` ${!open && "hidden"} duration-500 `}>
+              <Link to="/dashboard" className={` ${!open && "hidden"} duration-500 `}>
                 Dashboard
-              </a>
+              </Link>
+            </li>
+
+            {/* Category */}
+            <li className="flex items-center gap-2 my-3">
+            <span className="material-symbols-outlined">category</span>
+              <Link to="/category" className={` ${!open && "hidden"} duration-500 `}>
+                Category
+              </Link>
             </li>
 
             {/* category */}
-            <li className="flex items-center gap-2 my-3">
+            {/* <li className="flex items-center gap-2 my-3">
               <span className="material-symbols-outlined">category</span>
               <Link to="" className={` ${!open && "hidden"} duration-500 `}>
                 Category
               </Link>
-            </li>
+            </li> */}
 
             {/* form */}
             <li className="my-3">

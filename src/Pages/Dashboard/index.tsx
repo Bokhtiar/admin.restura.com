@@ -85,7 +85,7 @@ export const Dashboard: React.FC = (): JSX.Element => {
       {/* react-hook-form */}
       <section>
         <form action="" onSubmit={handleSubmit(formSubmitHandler)}>
-         
+       
           {/* 
         <input
           type="text"
@@ -186,7 +186,7 @@ export const Dashboard: React.FC = (): JSX.Element => {
             )}
           </div> */}
 
-          <input type="submit" value="submit" name="" id="" />
+          {/* <input type="submit" value="submit" name="" id="" /> */}
         </form>
       </section>
     </>

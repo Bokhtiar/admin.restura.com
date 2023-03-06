@@ -9,7 +9,7 @@ export const MainLayout = () => (
       <div>
         <Sidebar />
       </div>
-      <div className="w-full px-2">
+      <div className="w-full">
         <Outlet />
       </div>
     </section>
