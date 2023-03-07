@@ -1,16 +1,25 @@
-import { ICategoryCreateUpdate } from '../../types/category.type'
-import { Header } from '../../Layouts/Header'
-import { CategoryForm } from '../../Components/Form/category.form'
-import { useForm, SubmitHandler } from "react-hook-form";
+import { ICategoryCreateUpdate } from "../../types/category.type";
+import { Header } from "../../Layouts/Header";
+import { CategoryForm } from "../../Components/Form/category.form";
 
 export const CategoryCreate: React.FC = (): JSX.Element => {
-    return <>
-        {/* header */}
-        <Header title='Category create' another_page_title='list' another_page_link='/category' ></Header>
+  return (
+    <>
+      {/* header */}
+      <Header
+        title="Category create"
+        another_page_title="list"
+        another_page_link="/category"
+      ></Header>
 
-        {/* category from */}
-        <div className='container'>
-            <CategoryForm></CategoryForm>
+      {/* category from */}
+
+      <section className="p-6">
+        <div className="p-6 shadow-2xl rounded-md">
+            <span className="text-2xl text-gray-600">Category form</span>
+          <CategoryForm></CategoryForm>
         </div>
+      </section>
     </>
-}
+  );
+};
