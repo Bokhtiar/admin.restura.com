@@ -72,6 +72,17 @@ export const Sidebar: React.FC = (): JSX.Element => {
               </li>
             </Link>
 
+            {/* product variant */}
+            <Link
+              to="/product/variant"
+              className={` ${!open && "hidden"} duration-500 `}
+            >
+              <li className="flex items-center gap-2 my-6">
+              <span className="material-symbols-outlined">inventory_2</span>
+                Product variant
+              </li>
+            </Link>
+
 
             {/* form */}
             <li className="my-6">

@@ -11,6 +11,8 @@ import { ProductList } from "../Pages/Product";
 /* layouts */
 import { MainLayout } from "../Layouts/MainLayout";
 import { ProductCreate } from "../Pages/Product/create";
+import { VariantList } from "../Pages/variant";
+import { VariantCreate } from "../Pages/variant/create";
 
 const routesConfig = [
   // {
@@ -47,6 +49,14 @@ const routesConfig = [
       {
         path: "/product/create",
         element: <ProductCreate />,
+      },
+      {
+        path: "/product/variant",
+        element: <VariantList />,
+      },
+      {
+        path: "/product/variant/create",
+        element: <VariantCreate />,
       },
     ],
   },
