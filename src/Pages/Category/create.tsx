@@ -13,7 +13,6 @@ export const CategoryCreate: React.FC = (): JSX.Element => {
       ></Header>
 
       {/* category from */}
-
       <section className="p-6">
         <div className="p-6 shadow-2xl rounded-md">
             <span className="text-2xl text-gray-600">Category form</span>

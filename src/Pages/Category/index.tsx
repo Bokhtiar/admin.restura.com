@@ -2,9 +2,23 @@ import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { Header } from "../../Layouts/Header/index";
 import data from "../data";
+import {IRDataColumns} from '../../types/datatable.type'
 
 export const CategoryList: React.FC = (): JSX.Element => {
   const columns: any = [
+    {
+      name: "Title",
+      maxWidth: "60px",
+      selector: () => (
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs7kYpvPiHtsrq951vlIK-DlGlEQ06XWa-zA&usqp=CAU"
+          alt="Employee avatar"
+          className="w-[50px] h-[50px] rounded-full mx-auto p-1"
+        />
+      ),
+     
+    },
+
     {
       name: "Title",
       selector: "title",
@@ -20,6 +34,7 @@ export const CategoryList: React.FC = (): JSX.Element => {
       selector: "runtime",
       right: true,
     },
+
   ];
 
   const [records, setRecord] = useState(data);

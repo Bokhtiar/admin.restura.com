@@ -24,7 +24,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
           </span>
 
           {/* header */}
-          <div className="inline-flex items-center text-white gap-3 container py-4">
+          <div className="inline-flex items-center text-white gap-3 container py-6">
             <img
               src="./b.jpg"
               className={` ${
@@ -38,34 +38,43 @@ export const Sidebar: React.FC = (): JSX.Element => {
           </div>
 
           {/* menu */}
-          <ul className="pt-2 container text-white py-4">
-
+          <ul className="pt-2 container text-white ">
             {/* Dashboard */}
-            <li className="flex items-center gap-2 my-3">
+            <li className="flex items-center gap-2 my-6">
               <span className="material-symbols-outlined">home</span>
-              <Link to="/dashboard" className={` ${!open && "hidden"} duration-500 `}>
+              <Link
+                to="/dashboard"
+                className={` ${!open && "hidden"} duration-500 `}
+              >
                 Dashboard
               </Link>
             </li>
 
             {/* Category */}
-            <li className="flex items-center gap-2 my-3">
-            <span className="material-symbols-outlined">category</span>
-              <Link to="/category" className={` ${!open && "hidden"} duration-500 `}>
+            <li className="flex items-center gap-2 my-6">
+              <span className="material-symbols-outlined">category</span>
+              <Link
+                to="/category"
+                className={` ${!open && "hidden"} duration-500 `}
+              >
                 Category
               </Link>
             </li>
 
-            {/* category */}
-            {/* <li className="flex items-center gap-2 my-3">
-              <span className="material-symbols-outlined">category</span>
-              <Link to="" className={` ${!open && "hidden"} duration-500 `}>
-                Category
-              </Link>
-            </li> */}
+            {/* product */}
+            <Link
+              to="/product"
+              className={` ${!open && "hidden"} duration-500 `}
+            >
+              <li className="flex items-center gap-2 my-6">
+                <span className="material-symbols-outlined">inventory</span>
+                Product
+              </li>
+            </Link>
+
 
             {/* form */}
-            <li className="my-3">
+            <li className="my-6">
               <div className="flex justify-between gap-2">
                 <div className="flex gap-2 items-center">
                   <span className="material-symbols-outlined">article</span>
@@ -106,9 +115,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
                 Logout
               </Link>
             </li>
-
           </ul>
-
         </div>
       </div>
     </>
