@@ -40,63 +40,69 @@ export const Sidebar: React.FC = (): JSX.Element => {
           {/* menu */}
           <ul className="pt-2 container text-white ">
             {/* Dashboard */}
-            <li className="flex items-center gap-2 my-6">
-              <span className="material-symbols-outlined">home</span>
-              <Link
-                to="/dashboard"
-                className={` ${!open && "hidden"} duration-500 `}
-              >
-                Dashboard
+
+            <li className="my-5">
+              <Link className="flex gap-4" to="/dashboard">
+                <span className="material-symbols-outlined">home</span>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Dashboard
+                </span>
               </Link>
             </li>
 
             {/* Category */}
-            <li className="flex items-center gap-2 my-6">
-              <span className="material-symbols-outlined">category</span>
-              <Link
-                to="/category"
-                className={` ${!open && "hidden"} duration-500 `}
-              >
-                Category
+            <li className="my-5">
+              <Link className="flex gap-4" to="/category">
+                <span className="material-symbols-outlined">category</span>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Category
+                </span>
               </Link>
             </li>
 
             {/* product */}
-            <Link
-              to="/product"
-              className={` ${!open && "hidden"} duration-500 `}
-            >
-              <li className="flex items-center gap-2 my-6">
+            <li className="my-5">
+              <Link className="flex gap-4" to="/product">
                 <span className="material-symbols-outlined">inventory</span>
-                Product
-              </li>
-            </Link>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Product
+                </span>
+              </Link>
+            </li>
 
             {/* product variant */}
-            <Link
-              to="/product/variant"
-              className={` ${!open && "hidden"} duration-500 `}
-            >
-              <li className="flex items-center gap-2 my-6">
-              <span className="material-symbols-outlined">inventory_2</span>
-                Product variant
-              </li>
-            </Link>
+            <li className="my-5">
+              <Link className="flex gap-4" to="/product/variant">
+                <span className="material-symbols-outlined">update</span>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Product variant
+                </span>
+              </Link>
+            </li>
 
             {/* order */}
-            <Link
-              to="/order"
-              className={` ${!open && "hidden"} duration-500 `}
-            >
-              <li className="flex items-center gap-2 my-6">
-              <span className="material-symbols-outlined">grading</span>
-                Order
-              </li>
-            </Link>
+            <li className="my-5">
+              <Link className="flex gap-4" to="/order">
+                <span className="material-symbols-outlined">grading</span>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Order
+                </span>
+              </Link>
+            </li>
+
+             {/* Category */}
+             <li className="my-5">
+              <Link className="flex gap-4" to="/category">
+                <span className="material-symbols-outlined">logout</span>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Logout
+                </span>
+              </Link>
+            </li>
 
 
             {/* form */}
-            <li className="my-6">
+            {/* <li className="my-6">
               <div className="flex justify-between gap-2">
                 <div className="flex gap-2 items-center">
                   <span className="material-symbols-outlined">article</span>
@@ -119,7 +125,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
                 } `}
               >
                 <li className="my-1 px-8">
-                  <a href="">normle form</a>
+                  <a href="">normle form</a>  
                 </li>
                 <li className="my-1 px-8">
                   <a href="">text form</a>
@@ -128,15 +134,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
                   <a href="">advence form</a>
                 </li>
               </ul>
-            </li>
-
-            {/* category */}
-            <li className="flex items-center gap-2 my-3">
-              <span className="material-symbols-outlined">logout</span>
-              <Link to="" className={` ${!open && "hidden"} duration-500 `}>
-                Logout
-              </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

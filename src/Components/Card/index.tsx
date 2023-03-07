@@ -14,7 +14,7 @@ export const Cart: React.FC<cartTypes> = (props: cartTypes): JSX.Element => {
             </span>
           </div>
           <div className="leading-[3px] -mt-3">
-            <p className="font-bold text-lg">$ {props.value}</p>
+            <p className="font-bold text-lg my-1">$ {props.value}</p>
             <p className="">{props.name}</p>
           </div>
         </div>
