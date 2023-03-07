@@ -13,6 +13,7 @@ import { MainLayout } from "../Layouts/MainLayout";
 import { ProductCreate } from "../Pages/Product/create";
 import { VariantList } from "../Pages/variant";
 import { VariantCreate } from "../Pages/variant/create";
+import { OrderList } from "../Pages/Order";
 
 const routesConfig = [
   // {
@@ -57,6 +58,11 @@ const routesConfig = [
       {
         path: "/product/variant/create",
         element: <VariantCreate />,
+      },
+      /* order */
+      {
+        path: "/order",
+        element: <OrderList />,
       },
     ],
   },
