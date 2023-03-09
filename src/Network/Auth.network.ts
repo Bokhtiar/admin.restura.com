@@ -1,16 +1,12 @@
 import { publicRequest } from "../Config/axios.config";
+import { ILogin } from "../types/auth.type";
 
-/* Login request */
-type LoginDataType = {
-  email: string;
-  password: string;
-};
- 
-export const login = async (data: LoginDataType) => {
-  return await publicRequest.post(`/api/v1/user/auth/login`, data);
+
+export const login = async (data: ILogin) => {
+  return await publicRequest.post(`/auth/api/v1/admin/login`, data);
 };
 
-/* Register request */ 
+/* Register request */
 type RegisterDataType = {
   email: string;
   password: string;

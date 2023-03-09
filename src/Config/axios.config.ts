@@ -1,8 +1,8 @@
-
 import axios, { AxiosRequestConfig } from "axios";
 import { getToken } from "../utils/helper";
 
-const apiUrl = process.env.REACT_APP_API_ENDPOINT || "";
+const apiUrl = process.env.REACT_APP_API_ENDPOINT || "http://localhost:4000";
+const apiKey = process.env.REACT_APP_API_KEY || "5267556B58703273357638792F423F45";
 
 /* Publica/Common request config */
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -21,14 +21,15 @@ publicRequest.interceptors.request.use(
     if (config.headers === undefined) {
       config.headers = {};
     }
+    config.headers["api_key"] = apiKey;
     return config;
   },
   (err: any) => {
     console.log(err);
     Promise.reject(err);
   }
-); 
-
+);
+ 
 /* Private request config */
 privateRequest.interceptors.request.use(
   async (config: AxiosRequestConfig) => {
@@ -37,6 +38,7 @@ privateRequest.interceptors.request.use(
       config.headers = {};
     }
     if (token) {
+      config.headers["api_key"] = apiKey;
       config.headers["Authorization"] = "Bearer " + token || "";
     }
     return config;
