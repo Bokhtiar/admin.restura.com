@@ -52,7 +52,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
 
             {/* Category */}
             <li className="my-5">
-              <Link className="flex gap-4" to="/category">
+              <Link className="flex gap-4" to="/dashboard/category">
                 <span className="material-symbols-outlined">category</span>
                 <span className={` ${!open && "hidden"} duration-500 `}>
                   Category
@@ -62,7 +62,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
 
             {/* product */}
             <li className="my-5">
-              <Link className="flex gap-4" to="/product">
+              <Link className="flex gap-4" to="/dashboard/product">
                 <span className="material-symbols-outlined">inventory</span>
                 <span className={` ${!open && "hidden"} duration-500 `}>
                   Product
@@ -72,7 +72,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
 
             {/* product variant */}
             <li className="my-5">
-              <Link className="flex gap-4" to="/product/variant">
+              <Link className="flex gap-4" to="/dashboard/product/variant">
                 <span className="material-symbols-outlined">update</span>
                 <span className={` ${!open && "hidden"} duration-500 `}>
                   Product variant
@@ -82,7 +82,7 @@ export const Sidebar: React.FC = (): JSX.Element => {
 
             {/* order */}
             <li className="my-5">
-              <Link className="flex gap-4" to="/order">
+              <Link className="flex gap-4" to="/dashboard/order">
                 <span className="material-symbols-outlined">grading</span>
                 <span className={` ${!open && "hidden"} duration-500 `}>
                   Order

@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
+import { LoginForm } from "../../../Components/Form/login.form"
 
 export const Login : React.FC = ():JSX.Element => {
     return <>
-        <Link to="/dashboard">Login</Link>
+        <LoginForm></LoginForm>
     </>
 }
