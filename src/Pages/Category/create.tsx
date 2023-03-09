@@ -22,3 +22,4 @@ export const CategoryCreate: React.FC = (): JSX.Element => {
     </>
   );
 };
+ 

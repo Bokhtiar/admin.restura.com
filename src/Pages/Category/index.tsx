@@ -1,50 +1,62 @@
-import { useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { Header } from "../../Layouts/Header/index";
-import data from "../data";
-import {IRDataColumns} from '../../types/datatable.type'
+import { ICategory } from "../../types/category.type";
+import { categoires } from "../../Network/Category.network";
+import { Link } from "react-router-dom";
+import { IRDataColumns } from "../../types/datatable.type";
 
 export const CategoryList: React.FC = (): JSX.Element => {
-  const columns: any = [
+  const [data, setData] = useState<ICategory[] | []>([]);
+
+  /* fetchData */
+  const fetchData = useCallback(async () => {
+    try {
+      const response: any = await categoires();
+      if (response && response.status === 200) {
+        console.log(response.data.data);
+        setData(response.data?.data);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  }, [data]);
+
+  /* useEffect */
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // table colums
+  const columns: IRDataColumns[] = [
     {
-      name: "Title",
+      name: "",
       maxWidth: "60px",
-      selector: () => (
+      cell: (row) => (
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs7kYpvPiHtsrq951vlIK-DlGlEQ06XWa-zA&usqp=CAU"
-          alt="Employee avatar"
-          className="w-[50px] h-[50px] rounded-full mx-auto p-1"
+          src={row.icon}
+          alt="Company avatar"
+          className="w-[50px] h-[50px] rounded-full mx-auto"
         />
       ),
-     
-    },
-
-    {
-      name: "Title",
-      selector: "title",
-      sortable: true,
     },
     {
-      name: "Directior",
-      selector: "director",
-      sortable: true,
+      name: "Name",
+      maxWidth: "150px",
+      selector: (row) => row.name,
     },
     {
-      name: "Runtime (m)",
-      selector: "runtime",
-      right: true,
+      name: "Action",
+      maxWidth: "70px",
+      cell: (row) => (
+        <div className="flex gap-1">
+          <Link to={`/dashboard/applications/${row._id}`}>
+            edit
+          </Link>
+        </div>
+      ),
     },
-
   ];
-
-  const [records, setRecord] = useState(data);
-
-  function handleFilter(event: any) {
-    const newData = data.filter((row) => {
-      return row.title.toLowerCase().includes(event.target.value.toLowerCase());
-    });
-    setRecord(newData);
-  }
 
   return (
     <>
@@ -55,29 +67,13 @@ export const CategoryList: React.FC = (): JSX.Element => {
         another_page_link="/category/create"
       ></Header>
 
-      {/* category list */}
-      <section className="p-6">
-        <div className="p-6 shadow-2xl rounded-md">
-          <section className="mt-4">
-            <div className="flex justify-between items-center">
-                <span className="text-2xl text-gray-600">Category All</span>
-              <input
-                type="text"
-                className="border border-gray-400 py-1 rounded-md px-3"
-                placeholder="search"
-                onChange={handleFilter}
-                id=""
-              />
-            </div>
-            <DataTable
-              data={records}
-              columns={columns}
-              pagination
-              fixedHeader
-            ></DataTable>
-          </section>
-        </div>
-      </section>
+      {/* category */}
+      <DataTable
+        data={data}
+        columns={columns}
+        pagination={true}
+        noDataMessage="No jobs available."
+      />
     </>
   );
 };

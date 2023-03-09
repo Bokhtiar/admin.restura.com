@@ -10,10 +10,15 @@ export const CategoryForm: React.FC = (): JSX.Element => {
     formState: { errors },
   } = useForm<ICategoryCreateUpdate>();
 
-  const formSubmitHandler: SubmitHandler<ICategoryCreateUpdate> = (
+  const formSubmitHandler: SubmitHandler<ICategoryCreateUpdate> = async(
     data: ICategoryCreateUpdate
   ) => {
-    console.log("data", data);
+    try {
+     console.log(data);
+     
+    } catch (error:any) {
+      console.log(error);
+    }
   };
 
   return (
