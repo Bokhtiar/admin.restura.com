@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { removeToken } from "../../utils/helper";
 
 export const Sidebar: React.FC = (): JSX.Element => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(true);
   const [submenuOpen, setsubmenuOpen] = useState<boolean>(false);
+
+  /* logout */
+  const Logout = async () => {
+    await removeToken();
+    navigate("/login")
+  };
   return (
     <>
       {/* dashboard menu */}
@@ -90,16 +98,15 @@ export const Sidebar: React.FC = (): JSX.Element => {
               </Link>
             </li>
 
-             {/* Category */}
-             <li className="my-5">
-              <Link className="flex gap-4" to="/category">
+            {/* Category */}
+            <li className="my-5">
+              <Link className="flex gap-4" to="" onClick={() => Logout()}>
                 <span className="material-symbols-outlined">logout</span>
                 <span className={` ${!open && "hidden"} duration-500 `}>
                   Logout
                 </span>
               </Link>
             </li>
-
 
             {/* form */}
             {/* <li className="my-6">

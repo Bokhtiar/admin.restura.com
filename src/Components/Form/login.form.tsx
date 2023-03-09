@@ -43,7 +43,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
               Email
             </label>
             <input
-              {...register("email")}
+              {...register("email", { required: "This field is required" })}
               type="email"
               className="border border-gray-300 py-2 w-full focus:outline-none rounded-lg px-4"
               id=""
@@ -57,7 +57,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
               Password
             </label>
             <input
-              {...register("password")}
+              {...register("password", { required: "This field is required" })}
               type="password"
               className="border border-gray-300 py-2 w-full focus:outline-none rounded-lg px-4"
             />
