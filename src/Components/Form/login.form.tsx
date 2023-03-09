@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ILogin } from "../../types/auth.type";
 import { login } from "../../Network/Auth.network";
 import { setToken } from "../../utils/helper";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LoginForm: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -66,6 +66,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
           {/* button */}
           <div className="text-center">
             <PrimaryButton name="Login"></PrimaryButton>
+            <Link to="/register">register</Link>
           </div>
         </form>
       </div>

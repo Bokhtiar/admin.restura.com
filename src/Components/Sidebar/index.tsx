@@ -7,6 +7,10 @@ export const Sidebar: React.FC = (): JSX.Element => {
   const [open, setOpen] = useState<boolean>(true);
   const [submenuOpen, setsubmenuOpen] = useState<boolean>(false);
 
+  /* profile */
+  
+
+
   /* logout */
   const Logout = async () => {
     await removeToken();
