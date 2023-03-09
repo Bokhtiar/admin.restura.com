@@ -3,8 +3,15 @@ import { Footer } from "../Components/Footer";
 import { Navbar } from "../Components/Navbar";
 import { Sidebar } from "../Components/Sidebar";
 
-export const MainLayout = () => (
+export const DashboardLayout = () => (
   <>
-    <Outlet />
+    <section className="flex">
+      <div>
+        <Sidebar />
+      </div>
+      <div className="w-full">
+        <Outlet />
+      </div>
+    </section>
   </>
 );

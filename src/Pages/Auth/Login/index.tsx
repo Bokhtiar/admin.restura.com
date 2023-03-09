@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom"
+
 export const Login : React.FC = ():JSX.Element => {
     return <>
-        login
+        <Link to="/dashboard">Login</Link>
     </>
 }
