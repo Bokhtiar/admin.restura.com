@@ -16,7 +16,6 @@ export interface IRDataTable {
     minWidth?: string;
     maxWidth?: string;
     grow?: number;
-    selector?: string;
+    selector?: (data: any) => void;
     cell?: (data: any) => any;
   }
-  

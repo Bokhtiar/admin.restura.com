@@ -6,6 +6,7 @@ import { categoires } from "../../Network/Category.network";
 import { Link } from "react-router-dom";
 import { IRDataColumns } from "../../types/datatable.type";
 
+
 export const CategoryList: React.FC = (): JSX.Element => {
   const [data, setData] = useState<ICategory[] | []>([]);
 
@@ -27,10 +28,10 @@ export const CategoryList: React.FC = (): JSX.Element => {
     fetchData();
   }, []);
 
-  // table colums
+  /* data columns */
   const columns: IRDataColumns[] = [
     {
-      name: "",
+      name: "icon",
       maxWidth: "60px",
       cell: (row) => (
         <img
@@ -42,17 +43,14 @@ export const CategoryList: React.FC = (): JSX.Element => {
     },
     {
       name: "Name",
-      maxWidth: "150px",
       selector: (row) => row.name,
     },
     {
       name: "Action",
-      maxWidth: "70px",
+      maxWidth: "120px",
       cell: (row) => (
         <div className="flex gap-1">
-          <Link to={`/dashboard/applications/${row._id}`}>
-            edit
-          </Link>
+          <Link to="/">test</Link>
         </div>
       ),
     },
@@ -64,16 +62,16 @@ export const CategoryList: React.FC = (): JSX.Element => {
       <Header
         title="Category list"
         another_page_title="add"
-        another_page_link="/category/create"
+        another_page_link="/dashboard/category/create"
       ></Header>
 
       {/* category */}
-      <DataTable
+      {/* <DataTable
         data={data}
         columns={columns}
         pagination={true}
         noDataMessage="No jobs available."
-      />
+      /> */}
     </>
   );
 };

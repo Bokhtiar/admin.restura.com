@@ -9,7 +9,7 @@ export const CategoryCreate: React.FC = (): JSX.Element => {
       <Header
         title="Category create"
         another_page_title="list"
-        another_page_link="/category"
+        another_page_link="/dashboard/category"
       ></Header>
 
       {/* category from */}

@@ -1,9 +1,13 @@
 import { PrimaryButton } from "../Button";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ICategoryCreateUpdate } from "../../types/category.type";
+import { categoryCreate } from "../../Network/Category.network";
 
 
 export const CategoryForm: React.FC = (): JSX.Element => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -14,8 +18,10 @@ export const CategoryForm: React.FC = (): JSX.Element => {
     data: ICategoryCreateUpdate
   ) => {
     try {
-     console.log(data);
-     
+      const response:any =  await categoryCreate(data)
+      if(response && response.status ===200){
+        navigate("/dashboard/category");
+      }
     } catch (error:any) {
       console.log(error);
     }
