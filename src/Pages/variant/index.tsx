@@ -96,7 +96,7 @@ export const VariantList = (): JSX.Element => {
                           <td className="px-6 py-4">{item.name}</td>
                           <td className="px-6 py-4">{item.price}</td>
                           <td className="px-6 py-4 flex gap-1">
-                            <Link to={`/dashboard/variant/edit/${item._id}`}>
+                            <Link to={`/dashboard/product/variant/edit/${item._id}`}>
                               <span className="rounded-full bg-green-600 p-1 text-white material-symbols-outlined">
                                 edit
                               </span>

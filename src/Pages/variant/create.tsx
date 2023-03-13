@@ -1,7 +1,10 @@
 import { Header } from "../../Layouts/Header";
 import { VariantForm } from "../../Components/Form/variant.form";
+import { useParams } from "react-router-dom";
 
 export const VariantCreate = (): JSX.Element => {
+  const {id} = useParams();
+
   return (
     <>
       {/* header */}
@@ -15,7 +18,7 @@ export const VariantCreate = (): JSX.Element => {
       <section className="p-6">
         <div className="p-6 shadow-2xl rounded-md">
           <span className="text-2xl text-gray-600">Product form</span>
-          <VariantForm></VariantForm>
+          <VariantForm _id={`${id}`}></VariantForm>
         </div>
       </section>
     </>

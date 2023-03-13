@@ -97,6 +97,7 @@ const appRoutes = [
       { path: "product/edit/:id", element: <ProductCreate /> },
       { path: "product/variant", element: <VariantList /> },
       { path: "product/variant/create", element: <VariantCreate /> },
+      { path: "product/variant/edit/:id", element: <VariantCreate /> },
       
       /* order */
       { path: "order", element: <OrderList /> },
