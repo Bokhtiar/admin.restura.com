@@ -2,24 +2,33 @@ import { PrimaryButton } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ICategoryCreateUpdate } from "../../types/category.type";
-import { categoryCreate } from "../../Network/Category.network";
+import { categoryCreate, categoryShow, categoryUpdate } from "../../Network/Category.network";
+import { useCallback, useEffect, useState } from "react";
 
 
-export const CategoryForm: React.FC = (): JSX.Element => {
+type categoryType = {
+  _id : string;
+}
+
+export const CategoryForm: React.FC<categoryType> = (props:categoryType): JSX.Element => {  
   const navigate = useNavigate();
+  const [edit, setEdit] = useState<ICategoryCreateUpdate>()
 
+  /* hook-form register */
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ICategoryCreateUpdate>();
 
+  /* form submit handler */
   const formSubmitHandler: SubmitHandler<ICategoryCreateUpdate> = async(
     data: ICategoryCreateUpdate
   ) => {
     try {
-      const response:any =  await categoryCreate(data)
-      if(response && response.status ===200){
+
+      const response:any = edit ?  await categoryUpdate(data, props._id) :await categoryCreate(data);
+      if(response && response.status ===201){
         navigate("/dashboard/category");
       }
     } catch (error:any) {
@@ -27,6 +36,20 @@ export const CategoryForm: React.FC = (): JSX.Element => {
     }
   };
 
+  /* specific resoruce show  */
+  const fetchData = useCallback(async()=> {
+    const response = await categoryShow(props._id);
+    if(response && response.status === 200){
+      setEdit(response.data.data)
+    }
+  },[edit])
+
+  /* useCallback */
+  useEffect(()=> {
+    fetchData()  
+  },[])
+
+  
   return (
     <>
       <form action="" onSubmit={handleSubmit(formSubmitHandler)}>
@@ -38,6 +61,7 @@ export const CategoryForm: React.FC = (): JSX.Element => {
             {...register("name", { required: true })}
             className="py-3 px-3 border border-gray-300 w-full rounded-lg focus:outline-none"
             placeholder="Category name"
+            defaultValue={edit?.name}
           />
           
           {errors.name && errors.name.type === "required" && (
@@ -53,6 +77,7 @@ export const CategoryForm: React.FC = (): JSX.Element => {
             {...register("icon", { required: true })}
             className="py-3 px-3 border border-gray-300 focus:border-gray-500 w-full rounded-lg"
             placeholder="Category icon"
+            defaultValue={edit?.icon}
           />
           {errors.icon && errors.icon.type === "required" && (
             <span className="text-red-600">This is required</span>

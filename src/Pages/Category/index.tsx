@@ -1,61 +1,29 @@
-import { useCallback, useState, useEffect } from "react";
-import DataTable from "react-data-table-component";
+import { Link } from "react-router-dom";
 import { Header } from "../../Layouts/Header/index";
 import { ICategory } from "../../types/category.type";
+import { useCallback, useState, useEffect } from "react";
 import { categoires } from "../../Network/Category.network";
-import { Link } from "react-router-dom";
-import { IRDataColumns } from "../../types/datatable.type";
-
 
 export const CategoryList: React.FC = (): JSX.Element => {
-  const [data, setData] = useState<ICategory[] | []>([]);
+  const [datas, setData] = useState<ICategory[] | []>([]);
 
-  /* fetchData */
+  /* fetch data */
   const fetchData = useCallback(async () => {
     try {
-      const response: any = await categoires();
+      const response = await categoires();
       if (response && response.status === 200) {
-        console.log(response.data.data);
         setData(response.data?.data);
       }
     } catch (error: any) {
       console.log(error);
     }
-  }, [data]);
+  }, [datas]);
 
   /* useEffect */
   useEffect(() => {
     fetchData();
   }, []);
-
-  /* data columns */
-  const columns: IRDataColumns[] = [
-    {
-      name: "icon",
-      maxWidth: "60px",
-      cell: (row) => (
-        <img
-          src={row.icon}
-          alt="Company avatar"
-          className="w-[50px] h-[50px] rounded-full mx-auto"
-        />
-      ),
-    },
-    {
-      name: "Name",
-      selector: (row) => row.name,
-    },
-    {
-      name: "Action",
-      maxWidth: "120px",
-      cell: (row) => (
-        <div className="flex gap-1">
-          <Link to="/">test</Link>
-        </div>
-      ),
-    },
-  ];
-
+ 
   return (
     <>
       {/* header */}
@@ -66,12 +34,43 @@ export const CategoryList: React.FC = (): JSX.Element => {
       ></Header>
 
       {/* category */}
-      {/* <DataTable
-        data={data}
-        columns={columns}
-        pagination={true}
-        noDataMessage="No jobs available."
-      /> */}
+      <div className="relative overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Image
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {datas.map((d, i) => {
+              return (
+                <>
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={i}>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <img src={d.icon} alt="" />
+                    </th>
+                    <td className="px-6 py-4">{d.name}</td>
+                    <td className="px-6 py-4">
+                      <Link to={`/dashboard/category/edit/${d._id}`}>edit</Link>
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

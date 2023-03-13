@@ -89,6 +89,7 @@ const appRoutes = [
       /* category */
       { path: "category", element: <CategoryList /> },
       { path: "category/create", element: <CategoryCreate /> },
+      { path: "category/edit/:id", element: <CategoryCreate /> },
       
       /* product */
       { path: "product", element: <ProductList /> },
