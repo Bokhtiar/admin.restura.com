@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Header } from "../../Layouts/Header/index";
+import { Toastify } from "../../Components/toastify";
 import { ICategory } from "../../types/category.type";
 import { useCallback, useState, useEffect } from "react";
-import { categoires } from "../../Network/Category.network";
+import { categoires, categoryDelete } from "../../Network/Category.network";
 
 export const CategoryList: React.FC = (): JSX.Element => {
   const [datas, setData] = useState<ICategory[] | []>([]);
@@ -19,11 +20,19 @@ export const CategoryList: React.FC = (): JSX.Element => {
     }
   }, [datas]);
 
+  const destroy = async (_id: any) => {
+    const response = await categoryDelete(_id);
+    if (response && response.status === 200) {
+      fetchData();
+      Toastify.Success(response.data.message);
+    }
+  };
+
   /* useEffect */
   useEffect(() => {
     fetchData();
   }, []);
- 
+
   return (
     <>
       {/* header */}
@@ -53,7 +62,10 @@ export const CategoryList: React.FC = (): JSX.Element => {
             {datas.map((d, i) => {
               return (
                 <>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={i}>
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    key={i}
+                  >
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -62,7 +74,15 @@ export const CategoryList: React.FC = (): JSX.Element => {
                     </th>
                     <td className="px-6 py-4">{d.name}</td>
                     <td className="px-6 py-4">
-                      <Link to={`/dashboard/category/edit/${d._id}`}>edit</Link>
+                      <Link to={`/dashboard/category/edit/${d._id}`}>
+                        <span className="material-symbols-outlined">edit</span>
+                      </Link>
+                      <span
+                        onClick={() => destroy(d._id)}
+                        className="curser-pointer material-symbols-outlined"
+                      >
+                        delete
+                      </span>
                     </td>
                   </tr>
                 </>
