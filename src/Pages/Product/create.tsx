@@ -4,7 +4,7 @@ import { Header } from "../../Layouts/Header"
 export const ProductCreate = ():JSX.Element => {
     return <>
         {/* header */}
-        <Header title="Product create" another_page_title="list" another_page_link="/product"></Header>
+        <Header title="Product create" another_page_title="list" another_page_link="/dashboard/product"></Header>
 
         {/* product create */}
         <section className="p-6">

@@ -49,9 +49,10 @@ export const ProductForm = (): JSX.Element => {
           {/* image */}
           <div className=" col-span-1">
             <input
-              type="file"
+              type="text"
               {...register("image", { required: true })}
               className="py-3 px-3 border border-gray-300 focus:border-gray-500 w-full rounded-lg"
+              placeholder="product image "
             />
             {errors.image && errors.image.type === "required" && (
               <span className="text-red-600">This is required</span>

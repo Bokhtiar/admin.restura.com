@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ICategoryCreateUpdate } from "../../types/category.type";
 import { categoryCreate, categoryShow, categoryUpdate } from "../../Network/Category.network";
 import { useCallback, useEffect, useState } from "react";
-
+import { Toastify } from "../../Components/toastify";
 
 type categoryType = {
   _id : string;
@@ -30,6 +30,7 @@ export const CategoryForm: React.FC<categoryType> = (props:categoryType): JSX.El
       const response:any = edit ?  await categoryUpdate(data, props._id) :await categoryCreate(data);
       if(response && response.status ===201){
         navigate("/dashboard/category");
+        Toastify.Success(response.data.message);
       }
     } catch (error:any) {
       console.log(error);
