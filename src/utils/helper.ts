@@ -1,6 +1,8 @@
 // import { Toastify } from "components/toastify";
 // import { NetworkErrorType } from "types/error.types";
 
+import { Toastify } from "../Components/toastify";
+
 /* Set token */
 export const setToken = async (token: string): Promise<boolean> => {
   localStorage.setItem("token", token);
@@ -30,21 +32,26 @@ export const isValidEmail = () => {
   return regex;
 };
 
+interface NetworkErrorType {
+  field: string;
+  message: string;
+}
+
 /* Global network error handeller */
-// export const networkErrorHandeller = (error: any) => {
-//   if (
-//     error &&
-//     error.response &&
-//     error.response.data &&
-//     error.response.data.errors
-//   ) {
-//     error.response.data.errors.map((item: NetworkErrorType) => {
-//       return Toastify.Error(item.message);
-//     });
-//   } else {
-//     return Toastify.Error("Something going wrong, Try again.");
-//   }
-// };
+export const networkErrorHandeller = (error: any) => {
+  if (
+    error &&
+    error.response &&
+    error.response.data &&
+    error.response.data.errors
+  ) {
+    error.response.data.errors.map((item: NetworkErrorType) => {
+      return Toastify.Error(item.message);
+    });
+  } else {
+    return Toastify.Error("Something going wrong, Try again.");
+  }
+};
 
 /* Generate array from integer number */
 export const arrayFromNumber = (data: number) => {
