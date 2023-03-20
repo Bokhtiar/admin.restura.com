@@ -2,7 +2,7 @@ export interface IProduct {
   _id: string;
   name: string;
   price: number;
-  components: string;
+  ingredient: [];
   description: string;
   image: string;
   cooking_time: string;
@@ -11,7 +11,7 @@ export interface IProduct {
 export interface IProductCreateUpdate {
   name: string;
   price: number;
-  components: string;
+  ingredient: [];
   description: string;
   image: string;
   cooking_time: string;

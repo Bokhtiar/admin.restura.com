@@ -66,7 +66,6 @@ export const LoginForm: React.FC = (): JSX.Element => {
           {/* button */}
           <div className="text-center">
             <PrimaryButton name="Login"></PrimaryButton>
-            <Link to="/register">register</Link>
           </div>
         </form>
       </div>

@@ -1,5 +1,10 @@
 import { PrimaryButton } from "../Button";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  SubmitHandler,
+  useForm,
+  useController,
+  Controller,
+} from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { networkErrorHandeller } from "../../utils/helper";
 import {
@@ -11,9 +16,14 @@ import { IProductCreateUpdate } from "../../types/product.type";
 import { Toastify } from "../toastify";
 import { useEffect, useState } from "react";
 
+import Select from "react-select";
+
 type productEdit = {
   _id: string;
 };
+
+
+
 
 export const ProductForm: React.FC<productEdit> = (
   props: productEdit
@@ -21,10 +31,13 @@ export const ProductForm: React.FC<productEdit> = (
   const navigate = useNavigate();
   const [edit, setEdit] = useState<IProductCreateUpdate>();
 
+
   /* hook-form register */
   const {
     register,
     handleSubmit,
+    control,
+    watch,
     formState: { errors },
   } = useForm<IProductCreateUpdate>();
 
@@ -33,12 +46,15 @@ export const ProductForm: React.FC<productEdit> = (
     data: IProductCreateUpdate
   ) => {
     try {
+      console.log("in",data);
+      
       const response: any = edit
         ? await productUpdate(data, props._id)
         : await productStore(data);
       if (response && response.status === 201) {
-        console.log('ok');
+        console.log(response.data.data);
         
+
         navigate("/dashboard/product");
         Toastify.Success(response.data.message);
       }
@@ -65,10 +81,36 @@ export const ProductForm: React.FC<productEdit> = (
     productEdit();
   }, []);
 
+
+  const options:any = [
+    
+    { value: '6416d80214f40090a88aac7d', label: 'tometto' },
+    { value: '6416efc4ae01a820f910df1e', label: 'meet' },
+    { value: '6416efc4ae01a820f910df1e', label: 'meet' }
+  ]
+
+ 
+
   return (
     <>
       <form action="" onSubmit={handleSubmit(formSubmitHandler)}>
         <div className="grid grid-cols-2 gap-4">
+          <Controller
+            control={control}
+            name="ingredient"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <Select
+                options={options}
+                onChange={onChange}
+                isMulti={true}
+                onBlur={onBlur}
+                value={value}
+                name={name}
+                ref={ref}
+              />
+            )}
+          />
+
           {/* name */}
           <div className=" col-span-1">
             <input
@@ -126,18 +168,7 @@ export const ProductForm: React.FC<productEdit> = (
           </div>
 
           {/* components */}
-          <div className=" col-span-2">
-            <input
-              type="text"
-              {...register("components", { required: true })}
-              defaultValue={edit?.components}
-              className="py-3 px-3 border border-gray-300 focus:border-gray-500 w-full rounded-lg"
-              placeholder="components"
-            />
-            {errors.components && errors.components.type === "required" && (
-              <span className="text-red-600">This is required</span>
-            )}
-          </div>
+          
 
           {/* description */}
           <div className="col-span-2">
