@@ -2,10 +2,9 @@ import { PrimaryButton } from "../Button";
 import {
   SubmitHandler,
   useForm,
-  useController,
   Controller,
 } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { networkErrorHandeller } from "../../utils/helper";
 import {
   productShow,
@@ -19,6 +18,8 @@ import { useCallback, useEffect, useState } from "react";
 import Select from "react-select";
 import { IIngredient } from "../../types/ingredient.type";
 import { ingredients } from "../../Network/Ingredient.network";
+import { categoires } from "../../Network/Category.network";
+import { ICategory } from "../../types/category.type";
 
 type productEdit = {
   _id: string;
@@ -29,13 +30,20 @@ interface IOption {
   value: string;
 }
 
+interface IOptionCategory {
+  label: string;
+  value: string;
+}
+
 export const ProductForm: React.FC<productEdit> = (
   props: productEdit
 ): JSX.Element => {
   const navigate = useNavigate();
   const [edit, setEdit] = useState<IProductCreateUpdate>();
   const [data, setData] = useState<IIngredient[] | []>();
+  const [categories, setCategories] = useState<ICategory[] | []>();
   const [selectOptions, setSelectOptions] = useState<any[]>([]);
+  const [selectOptionsCategory, setSelectOptionsCategory] = useState<any[]>([]);
 
   /* hook-form register */
   const {
@@ -51,6 +59,8 @@ export const ProductForm: React.FC<productEdit> = (
     data: IProductCreateUpdate
   ) => {
     try {
+      console.log(data);
+      
       const response: any = edit
         ? await productUpdate(data, props._id)
         : await productStore(data);
@@ -102,11 +112,37 @@ export const ProductForm: React.FC<productEdit> = (
     }
   }, []);
 
+  /* categories */
+  const fetchDataCategory = useCallback(async () => {
+    try {
+      const response = await categoires();
+      setCategories(response.data.data);
+      const optionArr: IOption[] = [];
+      const dataArr = response.data.data;
+      const arrLength = response.data.data.length;
+
+      if (arrLength) {
+        for (let i = 0; i < arrLength; i++) {
+          const element = dataArr[i];
+          console.log("category", element);
+          optionArr.push({
+            label: element.name,
+            value: element._id,
+          });
+        }
+      }
+      setSelectOptionsCategory(optionArr);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }, []);
+
   /* useEffect */
   useEffect(() => {
     // productEdit();
     fetchDataIngredient();
-  }, [fetchDataIngredient]);
+    fetchDataCategory();
+  }, [fetchDataIngredient, fetchDataCategory]);
 
   return (
     <>
@@ -120,6 +156,22 @@ export const ProductForm: React.FC<productEdit> = (
                 options={selectOptions || []}
                 onChange={onChange}
                 isMulti={true}
+                onBlur={onBlur}
+                value={value}
+                name={name}
+                ref={ref}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="category"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <Select
+                options={selectOptionsCategory || []}
+                onChange={onChange}
+                isMulti={false}
                 onBlur={onBlur}
                 value={value}
                 name={name}
