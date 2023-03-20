@@ -14,23 +14,28 @@ import {
 } from "../../Network/Product.network";
 import { IProductCreateUpdate } from "../../types/product.type";
 import { Toastify } from "../toastify";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Select from "react-select";
+import { IIngredient } from "../../types/ingredient.type";
+import { ingredients } from "../../Network/Ingredient.network";
 
 type productEdit = {
   _id: string;
 };
 
-
-
+interface IOption {
+  label: string;
+  value: string;
+}
 
 export const ProductForm: React.FC<productEdit> = (
   props: productEdit
 ): JSX.Element => {
   const navigate = useNavigate();
   const [edit, setEdit] = useState<IProductCreateUpdate>();
-
+  const [data, setData] = useState<IIngredient[] | []>();
+  const [selectOptions, setSelectOptions] = useState<any[]>([]);
 
   /* hook-form register */
   const {
@@ -46,14 +51,11 @@ export const ProductForm: React.FC<productEdit> = (
     data: IProductCreateUpdate
   ) => {
     try {
-      console.log("in",data);
-      
       const response: any = edit
         ? await productUpdate(data, props._id)
         : await productStore(data);
       if (response && response.status === 201) {
         console.log(response.data.data);
-        
 
         navigate("/dashboard/product");
         Toastify.Success(response.data.message);
@@ -63,33 +65,48 @@ export const ProductForm: React.FC<productEdit> = (
     }
   };
 
-  /* specific reosurce show */
-  const productEdit = async () => {
+  // /* specific reosurce show */
+  // const productEdit = useCallback(async () => {
+  //   try {
+  //     const response = await productShow(props._id);
+  //     if (response && response.status === 200) {
+  //       setEdit(response.data.data);
+  //       console.log(response.data.data);
+  //     }
+  //   } catch (error: any) {
+  //     networkErrorHandeller(error);
+  //   }
+  // }, [props._id]);
+
+  /* ingredient list */
+  const fetchDataIngredient = useCallback(async () => {
     try {
-      const response = await productShow(props._id);
-      if (response && response.status === 200) {
-        setEdit(response.data.data);
-        console.log(response.data.data);
+      const response = await ingredients();
+      setData(response.data);
+      const optionArr: IOption[] = [];
+      const dataArr = response.data.data;
+      const arrLength = response.data.data.length;
+      if (arrLength) {
+        for (let i = 0; i < arrLength; i++) {
+          const element = dataArr[i];
+          optionArr.push({
+            label: element.name,
+            value: element._id,
+          });
+        }
       }
+
+      setSelectOptions(optionArr);
     } catch (error: any) {
-      networkErrorHandeller(error);
+      console.log(error);
     }
-  };
+  }, []);
 
   /* useEffect */
   useEffect(() => {
-    productEdit();
-  }, []);
-
-
-  const options:any = [
-    
-    { value: '6416d80214f40090a88aac7d', label: 'tometto' },
-    { value: '6416efc4ae01a820f910df1e', label: 'meet' },
-    { value: '6416efc4ae01a820f910df1e', label: 'meet' }
-  ]
-
- 
+    // productEdit();
+    fetchDataIngredient();
+  }, [fetchDataIngredient]);
 
   return (
     <>
@@ -100,7 +117,7 @@ export const ProductForm: React.FC<productEdit> = (
             name="ingredient"
             render={({ field: { onChange, onBlur, value, name, ref } }) => (
               <Select
-                options={options}
+                options={selectOptions || []}
                 onChange={onChange}
                 isMulti={true}
                 onBlur={onBlur}
@@ -168,7 +185,6 @@ export const ProductForm: React.FC<productEdit> = (
           </div>
 
           {/* components */}
-          
 
           {/* description */}
           <div className="col-span-2">
