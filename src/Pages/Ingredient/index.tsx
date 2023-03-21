@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { Header } from "../../Layouts/Header";
 import { IIngredient } from "../../types/ingredient.type";
-import { ingredients } from "../../Network/Ingredient.network";
+import {
+  ingredientDestroy,
+  ingredients,
+} from "../../Network/Ingredient.network";
 import { Link } from "react-router-dom";
 
 export const Ingredient: React.FC = (): JSX.Element => {
   const [data, setData] = useState<IIngredient[] | []>([]);
- 
-  //fetchData
+
+  /* fetchData */
   const fetchData = useCallback(async () => {
     try {
       const response = await ingredients();
@@ -19,7 +22,13 @@ export const Ingredient: React.FC = (): JSX.Element => {
     }
   }, []);
 
-
+  /* ingredient destory */
+  const destroy = async (id: string) => {
+    const response = await ingredientDestroy(id);
+    if (response && response.status === 200) {
+      fetchData();
+    }
+  };
 
   /* useEffect */
   useEffect(() => {
@@ -72,12 +81,12 @@ export const Ingredient: React.FC = (): JSX.Element => {
                               edit
                             </span>
                           </Link>
-                          {/* <span
+                          <span
                             onClick={() => destroy(d._id)}
                             className="cursor-pointer rounded-full bg-red-600 p-1 text-white material-symbols-outlined"
                           >
                             delete
-                          </span> */}
+                          </span>
                         </td>
                       </tr>
                     </>

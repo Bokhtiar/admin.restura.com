@@ -77,6 +77,7 @@ import { getToken } from "../utils/helper";
 import { Four0Four } from "../Pages/404";
 import { Login } from "../Pages/Auth/Login";
 import { Ingredient } from "../Pages/Ingredient";
+import { IngredientCreate } from "../Pages/Ingredient/create";
 
 const appRoutes = [
   {
@@ -91,9 +92,10 @@ const appRoutes = [
       { path: "category", element: <CategoryList /> },
       { path: "category/create", element: <CategoryCreate /> },
       { path: "category/edit/:id", element: <CategoryCreate /> },
-      
+
       /* ingredient */
       { path: "ingredient", element: <Ingredient /> },
+      { path: "ingredient/create", element: <IngredientCreate /> },
 
       /* product */
       { path: "product", element: <ProductList /> },
@@ -102,7 +104,7 @@ const appRoutes = [
       { path: "product/variant", element: <VariantList /> },
       { path: "product/variant/create", element: <VariantCreate /> },
       { path: "product/variant/edit/:id", element: <VariantCreate /> },
-      
+
       /* order */
       { path: "order", element: <OrderList /> },
     ],
@@ -114,9 +116,9 @@ export const permittedRoutes = () => {
   const token = getToken();
   if (token) {
     return appRoutes;
-  }else{
-    return [{ path: "login", element: <Login /> }]
+  } else {
+    return [{ path: "login", element: <Login /> }];
   }
-  
+
   // return [];
 };
