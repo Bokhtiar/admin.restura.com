@@ -8,13 +8,11 @@ export const Sidebar: React.FC = (): JSX.Element => {
   const [submenuOpen, setsubmenuOpen] = useState<boolean>(false);
 
   /* profile */
-  
-
 
   /* logout */
   const Logout = async () => {
     await removeToken();
-    navigate("/login")
+    navigate("/login");
   };
   return (
     <>
@@ -68,6 +66,16 @@ export const Sidebar: React.FC = (): JSX.Element => {
                 <span className="material-symbols-outlined">category</span>
                 <span className={` ${!open && "hidden"} duration-500 `}>
                   Category
+                </span>
+              </Link>
+            </li>
+
+            {/* ingredient */}
+            <li className="my-5">
+              <Link className="flex gap-4" to="/dashboard/ingredient">
+                <span className="material-symbols-outlined">inventory</span>
+                <span className={` ${!open && "hidden"} duration-500 `}>
+                  Ingredient
                 </span>
               </Link>
             </li>

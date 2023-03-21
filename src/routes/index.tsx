@@ -76,6 +76,7 @@ import { Dashboard } from "../Pages/Dashboard";
 import { getToken } from "../utils/helper";
 import { Four0Four } from "../Pages/404";
 import { Login } from "../Pages/Auth/Login";
+import { Ingredient } from "../Pages/Ingredient";
 
 const appRoutes = [
   {
@@ -91,6 +92,9 @@ const appRoutes = [
       { path: "category/create", element: <CategoryCreate /> },
       { path: "category/edit/:id", element: <CategoryCreate /> },
       
+      /* ingredient */
+      { path: "ingredient", element: <Ingredient /> },
+
       /* product */
       { path: "product", element: <ProductList /> },
       { path: "product/create", element: <ProductCreate /> },

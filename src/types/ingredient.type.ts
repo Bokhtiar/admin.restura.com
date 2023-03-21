@@ -3,3 +3,8 @@ export interface IIngredient {
   name: string;
   icon: string;
 }
+
+export interface IIngredientCreateUpdate {
+  name: string;
+  icon: string;
+}
